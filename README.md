@@ -4,7 +4,7 @@
 >
 > 整个 Harness 窗口变成一张磨砂玻璃：透出你桌面壁纸的颜色，面板半透明，控件是 Apple 液态玻璃质感；同时保证正文、代码、菜单都读得清。
 
-![预览](docs/preview.png)
+![首页预览](docs/preview-home.png)
 
 ## 它做了什么
 
