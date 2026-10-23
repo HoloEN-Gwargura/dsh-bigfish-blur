@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Liquid Glass">
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#dbe6ff"/>
+      <stop offset="0.45" stop-color="#e9d9ff"/>
+      <stop offset="1" stop-color="#c9f3ec"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="0.55" stop-color="#ffffff" stop-opacity="0.15"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="bloom" cx="0.78" cy="0.82" r="0.7">
+      <stop offset="0" stop-color="#7fb0ff" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#7fb0ff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.25"/>
+    </linearGradient>
+  </defs>
+  <rect x="6" y="6" width="52" height="52" rx="15" fill="url(#tile)"/>
+  <rect x="6" y="6" width="52" height="52" rx="15" fill="url(#bloom)"/>
+  <path d="M6 33c10-9 22-13 33-10 8 2 14 6 19 12v8c-7-7-16-10-26-9-9 1-17 4-26 9z" fill="#ffffff" opacity="0.28"/>
+  <rect x="10" y="10" width="44" height="24" rx="11" fill="url(#sheen)" opacity="0.85"/>
+  <rect x="6.75" y="6.75" width="50.5" height="50.5" rx="14.3" fill="none" stroke="url(#rim)" stroke-width="1.5"/>
+  <circle cx="22" cy="20" r="3" fill="#ffffff" opacity="0.7"/>
+</svg>

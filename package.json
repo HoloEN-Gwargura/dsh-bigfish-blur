@@ -1,0 +1,47 @@
+{
+  "name": "dsh-liquid-glass",
+  "version": "1.0.0",
+  "private": false,
+  "type": "module",
+  "description": "Big Fish Window Blur: liquid-glass window and panels for the DeepSeek Harness Web UI, painted over a frosted desktop-wallpaper canvas.",
+  "license": "MIT",
+  "author": "HoloEN-Gwargura",
+  "homepage": "https://github.com/HoloEN-Gwargura/dsh-bigfish-blur#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HoloEN-Gwargura/dsh-bigfish-blur.git"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "dsh-bundle",
+    "liquid-glass",
+    "glassmorphism",
+    "frosted-glass",
+    "theme",
+    "windows"
+  ],
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": []
+    }
+  }
+}
