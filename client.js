@@ -215,6 +215,24 @@ div:has(> [data-shell-overlay]) > div:nth-child(1) :is(
   background-image: none !important;
 }
 
+/* ---------- surfaces that hold a whole page of text must be near opaque ---------- */
+/* The settings dialog is a full page of text sitting above the conversation. With
+   glass tints it let the chat read straight through, so it is pinned to a solid
+   plate (and so are the cards inside it). No backdrop-filter here: a dialog can
+   host popovers, and a filter would make it their containing block. */
+[role="dialog"],
+[role="dialog"] [class*="card"],
+[role="dialog"] [class*="Card"] {
+  background-color: rgba(247, 250, 254, 0.97) !important;
+  background-image: none !important;
+}
+
+body[data-ds-dark-theme] [role="dialog"],
+body[data-ds-dark-theme] [role="dialog"] [class*="card"],
+body[data-ds-dark-theme] [role="dialog"] [class*="Card"] {
+  background-color: rgba(22, 25, 31, 0.97) !important;
+}
+
 /* ---------- liquid-glass controls: paint only ---------- */
 /* The deliverables card (the "presented file" plate) defines its own near-white
    fill on its root element. It shows up both inside the transcript and in the
@@ -329,6 +347,7 @@ select,
       '--dsw-alias-bg-document-preview': { light: 'rgba(234, 239, 247, 0.92)', dark: 'rgba(26, 30, 36, 0.92)' },
       '--dsw-menu-surface-fill': { light: 'rgba(249, 251, 255, 0.92)', dark: 'rgba(26, 29, 36, 0.93)' },
       '--dsw-specific-menu': { light: 'rgba(249, 251, 255, 0.93)', dark: 'rgba(26, 29, 36, 0.93)' },
+      '--dsw-alias-settings-card-fill': { light: 'rgba(247, 250, 254, 0.90)', dark: 'rgba(26, 29, 36, 0.90)' },
       '--dsw-alias-menu-group-header-fill': { light: 'rgba(249, 251, 255, 0.97)', dark: 'rgba(26, 29, 36, 0.97)' },
       '--dsw-menu-backdrop-filter': { light: 'blur(36px) saturate(180%)', dark: 'blur(36px) saturate(180%)' },
       '--dsw-elevation-soft': {
