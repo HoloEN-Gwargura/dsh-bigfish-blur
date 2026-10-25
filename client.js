@@ -137,8 +137,8 @@ html[data-windows-titlebar] div:has(> [data-shell-overlay])::before {
 :is([data-conversation-content], [data-conversation-region]) [class*="diffPanel"],
 :is([data-conversation-content], [data-conversation-region]) [class*="diffView"] {
   background-image: none !important;
-  -webkit-backdrop-filter: blur(22px) saturate(160%);
-  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(34px) saturate(160%);
+  backdrop-filter: blur(34px) saturate(160%);
 }
 
 /* Inline code stays a *tell*, not a block: a nearly flat fill plus one hairline,
@@ -233,6 +233,52 @@ body[data-ds-dark-theme] [role="dialog"] [class*="Card"] {
   background-color: rgba(22, 25, 31, 0.97) !important;
 }
 
+/* Third-party pages built out of the layer tokens inherit this theme's airy values
+   and end up as ghosts of themselves. Inside the plugin market's own root the
+   layers are raised to real card weight, so the list reads like a list again. */
+[data-dsh-market-root],
+[data-dsh-market-portal] {
+  --dsw-alias-bg-layer-1: rgba(255, 255, 255, 0.55);
+  --dsw-alias-bg-layer-2: rgba(255, 255, 255, 0.72);
+  --dsw-alias-bg-layer-3: rgba(255, 255, 255, 0.86);
+  --dsw-alias-bg-module-platform: rgba(255, 255, 255, 0.45);
+}
+
+body[data-ds-dark-theme] [data-dsh-market-root],
+body[data-ds-dark-theme] [data-dsh-market-portal] {
+  --dsw-alias-bg-layer-1: rgba(30, 34, 42, 0.62);
+  --dsw-alias-bg-layer-2: rgba(32, 36, 44, 0.78);
+  --dsw-alias-bg-layer-3: rgba(36, 40, 48, 0.88);
+  --dsw-alias-bg-module-platform: rgba(30, 34, 42, 0.52);
+}
+
+/* ---------- big panels get real frost, not just tint ---------- */
+/* Panes that hold a whole page of content (the right sidebar with its document /
+   file preview, and third-party full-page UIs) are frosted as well as tinted, so
+   whatever sits behind them turns into colour instead of legible text. Dialogs are
+   deliberately excluded: they are already 97% and a filter would make them the
+   containing block of any popover they open. */
+[data-rightbar-col],
+[data-dsh-market-root],
+[data-dsh-market-portal] {
+  -webkit-backdrop-filter: blur(44px) saturate(150%);
+  backdrop-filter: blur(44px) saturate(150%);
+}
+
+/* The sidebar's search field and its result rows sit on the sidebar tint; give the
+   field itself a plate so the placeholder stays readable over a busy wallpaper. */
+div:has(> [data-shell-overlay]) :is([role="searchbox"], input[type="search"], input[placeholder]),
+[data-shell-overlay] :is([role="searchbox"], input[type="search"], input[placeholder]) {
+  background-color: rgba(255, 255, 255, 0.55) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(140%);
+  backdrop-filter: blur(28px) saturate(140%);
+}
+
+body[data-ds-dark-theme] div:has(> [data-shell-overlay]) :is([role="searchbox"], input[type="search"], input[placeholder]),
+body[data-ds-dark-theme] [data-shell-overlay] :is([role="searchbox"], input[type="search"], input[placeholder]) {
+  background-color: rgba(24, 27, 33, 0.62) !important;
+}
+
 /* ---------- liquid-glass controls: paint only ---------- */
 /* The deliverables card (the "presented file" plate) defines its own near-white
    fill on its root element. It shows up both inside the transcript and in the
@@ -318,9 +364,9 @@ select,
      */
     const GLASS_TOKENS = {
       '--dsw-alias-bg-base': { light: 'rgba(255, 255, 255, 0.26)', dark: 'rgba(12, 14, 19, 0.34)' },
-      '--dsw-alias-bg-layer-1': { light: 'rgba(255, 255, 255, 0.16)', dark: 'rgba(20, 23, 29, 0.30)' },
-      '--dsw-alias-bg-layer-2': { light: 'rgba(255, 255, 255, 0.22)', dark: 'rgba(26, 29, 36, 0.36)' },
-      '--dsw-alias-bg-layer-3': { light: 'rgba(255, 255, 255, 0.28)', dark: 'rgba(34, 37, 45, 0.44)' },
+      '--dsw-alias-bg-layer-1': { light: 'rgba(255, 255, 255, 0.40)', dark: 'rgba(20, 23, 29, 0.48)' },
+      '--dsw-alias-bg-layer-2': { light: 'rgba(255, 255, 255, 0.55)', dark: 'rgba(26, 29, 36, 0.60)' },
+      '--dsw-alias-bg-layer-3': { light: 'rgba(255, 255, 255, 0.68)', dark: 'rgba(34, 37, 45, 0.72)' },
       '--dsw-alias-bg-overlay': { light: 'rgba(252, 253, 255, 0.92)', dark: 'rgba(22, 25, 32, 0.92)' },
       '--dsw-specific-sidebar-fill': { light: 'rgba(255, 255, 255, 0.20)', dark: 'rgba(6, 8, 12, 0.30)' },
       '--dsw-specific-input-major': { light: 'rgba(228, 234, 243, 0.88)', dark: 'rgba(30, 34, 42, 0.90)' },
@@ -330,7 +376,7 @@ select,
       /* The composer's "+" button, the workspace/model chips and the light hover
          fills are the remaining white blobs in the input row. */
       '--dsw-specific-selector': { light: 'rgba(255, 255, 255, 0.16)', dark: 'rgba(30, 33, 40, 0.44)' },
-      '--dsw-alias-bg-module-platform': { light: 'rgba(255, 255, 255, 0.14)', dark: 'rgba(30, 33, 40, 0.40)' },
+      '--dsw-alias-bg-module-platform': { light: 'rgba(255, 255, 255, 0.36)', dark: 'rgba(30, 33, 40, 0.50)' },
       '--dsw-alias-interactive-bg-hover-solid': { light: 'rgba(255, 255, 255, 0.24)', dark: 'rgba(255, 255, 255, 0.10)' },
       '--dsw-alias-button-ghost-active-fill': { light: 'rgba(255, 255, 255, 0.18)', dark: 'rgba(30, 33, 40, 0.40)' },
       /* Assistant-side rows stay airy, but anything that carries *code* must be
@@ -344,12 +390,12 @@ select,
       '--dsw-alias-markdown-code-segment-unselected': { light: 'rgba(255, 255, 255, 0.10)', dark: 'rgba(255, 255, 255, 0.06)' },
       '--dsw-alias-markdown-code-segment-selected': { light: 'rgba(255, 255, 255, 0.26)', dark: 'rgba(255, 255, 255, 0.18)' },
       /* Document preview panels (file / diff side panel) need the same readability. */
-      '--dsw-alias-bg-document-preview': { light: 'rgba(234, 239, 247, 0.92)', dark: 'rgba(26, 30, 36, 0.92)' },
+      '--dsw-alias-bg-document-preview': { light: 'rgba(244, 247, 252, 0.94)', dark: 'rgba(26, 30, 36, 0.94)' },
       '--dsw-menu-surface-fill': { light: 'rgba(249, 251, 255, 0.92)', dark: 'rgba(26, 29, 36, 0.93)' },
       '--dsw-specific-menu': { light: 'rgba(249, 251, 255, 0.93)', dark: 'rgba(26, 29, 36, 0.93)' },
       '--dsw-alias-settings-card-fill': { light: 'rgba(247, 250, 254, 0.90)', dark: 'rgba(26, 29, 36, 0.90)' },
       '--dsw-alias-menu-group-header-fill': { light: 'rgba(249, 251, 255, 0.97)', dark: 'rgba(26, 29, 36, 0.97)' },
-      '--dsw-menu-backdrop-filter': { light: 'blur(36px) saturate(180%)', dark: 'blur(36px) saturate(180%)' },
+      '--dsw-menu-backdrop-filter': { light: 'blur(48px) saturate(180%)', dark: 'blur(48px) saturate(180%)' },
       '--dsw-elevation-soft': {
         light: '0 14px 34px -18px rgba(18, 26, 48, 0.20)',
         dark: '0 14px 34px -18px rgba(0, 0, 0, 0.50)',
